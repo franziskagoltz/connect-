@@ -34,6 +34,7 @@ class Connections(db.Model):
     last_name = db.Column(db.String(150), nullable=False)
     last_interaction = db.Column(db.DateTime)
     notes = db.Column(db.String())
+    interests = db.Column(db.String(500))
 
     def __repr__(self):
         return "Connection id={} first_name={} last_name={} last_interaction={}".format(

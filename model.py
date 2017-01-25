@@ -20,8 +20,24 @@ class Users(db.Model):
     password = db.Column(db.String(100), nullable=False)
 
     def __repr__(self):
-        return "User id={} email={} password={} zipcode={}".format(
+        return "User id={} first_name={} last_name={}".format(
             self.user_id, self.first_name, self.last_name)
+
+
+class Connections(db.Model):
+    """Connections of each User"""
+
+    __tabelname__ = "connections"
+
+    connection_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    first_name = db.Column(db.String(150), nullable=False)
+    last_name = db.Column(db.String(150), nullable=False)
+    last_interaction = db.Column(db.DateTime)
+    notes = db.Column(db.String())
+
+    def __repr__(self):
+        return "Connection id={} first_name={} last_name={} last_interaction={}".format(
+            self.connection_id, self.first_name, self.last_name, self.last_interaction)
 
 
 # Helper functions to connect to database

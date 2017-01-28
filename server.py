@@ -28,6 +28,20 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/view-connections")
+def view_connections():
+    """displays the user's connections"""
+
+    return render_template("view_connections.html")
+
+
+@app.route("/add-connection")
+def view_connections():
+    """lets user add a connection"""
+
+    return render_template("add_connection.html")
+
+
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the
     # point that we invoke the DebugToolbarExtension

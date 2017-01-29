@@ -2,21 +2,27 @@
 
 <html>
 <head>
-    <title>
-        {% block title %}
-            Connect++
-        {% endblock %}
-    </title>
+  <title>
+    {% block title %}
+      Connect++
+    {% endblock %}
+  </title>
 </head>
 <body>
-    <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://code.jquery.com/jquery.js"></script>
 
-    <!-- bootstrap link -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <!-- bootstrap link -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-    {% block content %}
+  <div class="col-xs-12">
+    {% for message in get_flashed_messages() %}
+      {{ message }}
+    {% endfor %}
+  </div>
 
-    {% endblock %}
+  {% block content %}
+
+  {% endblock %}
 
 </body>
 </html>

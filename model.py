@@ -8,7 +8,7 @@ db = SQLAlchemy()
 
 
 # Model definitions
-class Users(db.Model):
+class User(db.Model):
     """Users of connect++"""
 
     __tabelname__ = "users"
@@ -24,7 +24,7 @@ class Users(db.Model):
             self.user_id, self.first_name, self.last_name)
 
 
-class Connections(db.Model):
+class Connection(db.Model):
     """Connections of each User"""
 
     __tabelname__ = "connections"
@@ -32,16 +32,17 @@ class Connections(db.Model):
     connection_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     first_name = db.Column(db.String(150), nullable=False)
     last_name = db.Column(db.String(150), nullable=False)
-    met_at = db.Column(db.DateTime)
-    last_interaction_at = db.Column(db.DateTime)
+    email = email = db.Column(db.String(100))
+    met_where = db.Column(db.String(100))
+    connection_added_at = db.Column(db.DateTime)
     city = db.Column(db.String(25))
     state = db.Column(db.String(2))
-    notes = db.Column(db.String())
+    notes = db.Column(db.String)
     interests = db.Column(db.String(500))
 
     def __repr__(self):
         return "Connection id={} first_name={} last_name={} last_interaction={}".format(
-            self.connection_id, self.first_name, self.last_name, self.last_interaction)
+            self.connection_id, self.first_name, self.last_name, self.lconnection_added_at)
 
 
 # Helper functions to connect to database
@@ -59,5 +60,5 @@ if __name__ == "__main__":
     # running when file gets called directly
 
     from server import app
-    connect_to_db(app, "postgresql:///connect")
+    connect_to_db(app, "postgresql:///connect++")
     print "Connected to DB."

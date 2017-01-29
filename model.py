@@ -32,7 +32,10 @@ class Connections(db.Model):
     connection_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     first_name = db.Column(db.String(150), nullable=False)
     last_name = db.Column(db.String(150), nullable=False)
-    last_interaction = db.Column(db.DateTime)
+    met_at = db.Column(db.DateTime)
+    last_interaction_at = db.Column(db.DateTime)
+    city = db.Column(db.String(25))
+    state = db.Column(db.String(2))
     notes = db.Column(db.String())
     interests = db.Column(db.String(500))
 

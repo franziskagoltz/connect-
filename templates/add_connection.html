@@ -6,35 +6,35 @@
 <div class="container">
   <h1>Add a New Connection</h1>
   <br>
-  <form action="" class="col-xs-12 col-md-6">
+  <form class="col-xs-12 col-md-6" action="/added" method="POST">
     <div class="form-group">
       <label for="first_name">First Name</label>
-      <input type="text" class="form-control" id="first_name" placeholder="First Name">
+      <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name">
     </div>
     <div class="form-group">
       <label for="last_name">Last Name</label>
-      <input type="text" class="form-control" id="last_name" placeholder="Last Name">
+      <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name">
     </div>
     <div class="form-group">
       <label for="email">Email address</label>
-      <input type="email" class="form-control" id="email" placeholder="Email">
+      <input type="email" class="form-control" id="email" name="email" placeholder="Email">
     </div>
     <div class="form-group">
       <label for="met_where">Met Where</label>
-      <input type="text" class="form-control" id="met_where" placeholder="Location">
+      <input type="text" class="form-control" id="met_where" name="met_where" placeholder="Location">
     </div>
     <div class="form-group">
       <label for="introduced_by">Introduced by</label>
-      <input type="text" class="form-control" id="introduced_by" placeholder="Introduced By">
+      <input type="text" class="form-control" id="introduced_by" anme="introduced_by" placeholder="Introduced By">
     </div>
     <div class="form-group">
       <label for="city">City</label>
-      <input type="text" class="form-control" id="city" placeholder="City">
+      <input type="text" class="form-control" id="city" name="city" placeholder="City">
     </div>
     <div class="form-group">
       <label for="state">State</label>
       <!-- <input type="text" class="form-control" id="state" placeholder="Password"> -->
-      <select id="state">
+      <select id="state" name="state">
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
         <option value="AZ">Arizona</option>
@@ -92,12 +92,12 @@
     <div class="form-group">
       <label for="interests">Interests</label>
       <!-- <input type="text" class="form-control" id="interests" placeholder="Interests"> -->
-      <textarea class="form-control" id="interests"  rows="2"></textarea>
+      <textarea class="form-control" id="interests" name="interests" rows="2"></textarea>
     </div>
     <div class="form-group">
       <label for="notes">Notes</label>
       <!-- <input type="text" class="form-control" id="notes" placeholder="Notes"> -->
-      <textarea class="form-control" id="notes" rows="3"></textarea>
+      <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
     </div>
 
     <button type="submit" class="btn btn-default">Add Connection</button>

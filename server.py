@@ -6,7 +6,11 @@ from flask import Flask, jsonify, render_template, redirect, request, flash, ses
 
 from flask_debugtoolbar import DebugToolbarExtension
 
-from model import connect_to_db, db
+from model import connect_to_db, db, Connection
+
+from datetime import datetime
+
+import helper
 
 
 app = Flask(__name__)
@@ -36,10 +40,22 @@ def view_connections():
 
 
 @app.route("/add-connection")
-def view_connections():
-    """lets user add a connection"""
+def add_connections():
+    """lets user fill out form to add a connection"""
 
     return render_template("add_connection.html")
+
+
+@app.route("/added", methods=["POST"])
+def add_single_connection():
+    """adds a new connection to the database"""
+
+    info = request.form
+
+    helper.add_connection(info)
+
+    flash("You added {} {} as a connection".format(info.get("first_name"), info.get("last_name")))
+    return redirect("/")
 
 
 if __name__ == "__main__":
@@ -47,7 +63,7 @@ if __name__ == "__main__":
     # point that we invoke the DebugToolbarExtension
     app.debug = False
 
-    connect_to_db(app, "postgresql:///")
+    connect_to_db(app, "postgresql:///connect++")
 
     # Use the DebugToolbar
     DebugToolbarExtension(app)

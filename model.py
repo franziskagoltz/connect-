@@ -34,6 +34,7 @@ class Connection(db.Model):
     last_name = db.Column(db.String(150), nullable=False)
     email = email = db.Column(db.String(100))
     met_where = db.Column(db.String(100))
+    introduced_by = db.Column(db.String(100))
     connection_added_at = db.Column(db.DateTime)
     city = db.Column(db.String(25))
     state = db.Column(db.String(2))
@@ -41,8 +42,8 @@ class Connection(db.Model):
     interests = db.Column(db.String(500))
 
     def __repr__(self):
-        return "Connection id={} first_name={} last_name={} last_interaction={}".format(
-            self.connection_id, self.first_name, self.last_name, self.lconnection_added_at)
+        return "Connection id={} first_name={} last_name={}".format(
+            self.connection_id, self.first_name, self.last_name)
 
 
 # Helper functions to connect to database
@@ -61,4 +62,5 @@ if __name__ == "__main__":
 
     from server import app
     connect_to_db(app, "postgresql:///connect++")
+    db.create_all()
     print "Connected to DB."

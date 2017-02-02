@@ -58,6 +58,13 @@ def add_single_connection():
     return redirect("/")
 
 
+@app.route("/login")
+def user_login():
+    """renders login form"""
+
+    return render_template("login_form.html")
+
+
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the
     # point that we invoke the DebugToolbarExtension

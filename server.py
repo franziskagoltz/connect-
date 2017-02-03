@@ -65,6 +65,26 @@ def user_login():
     return render_template("login_form.html")
 
 
+@app.route("/login", methods=["POST"])
+def verify_login():
+    """verifies a users login"""
+
+    email = request.form.get("username")
+    password = request.form.get("password")
+
+    try:
+        current_user = server_functions.get_current_user(email, password)
+        flash("You are now logged in!")
+        session["user_id"] = current_user.user_id
+        session["user_name"] = current_user.name
+
+        return redirect("/")
+
+    except NoResultFound:
+        flash("email and password didn't match any of our records")
+        return redirect("/login")
+
+
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the
     # point that we invoke the DebugToolbarExtension

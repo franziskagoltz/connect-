@@ -5,7 +5,7 @@ from flask import Flask, jsonify, session
 from datetime import datetime
 
 app = Flask(__name__)
-
+bcrypt = Bcrypt(app)
 
 # db.create_all()
 
@@ -33,3 +33,14 @@ def add_connection(info):
     db.session.add(connection)
 
     db.session.commit()
+
+
+def get_current_user(email, password):
+    """getting the current user from the database"""
+
+    stored_pwhash = User.query.filter(User.email == email).one().password
+
+    if bcrypt.check_password_hash(stored_pwhash, password):
+
+        return User.query.filter(User.email == email).one()
+

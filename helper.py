@@ -3,6 +3,7 @@
 from model import connect_to_db, db, User, Connection
 from flask import Flask, jsonify, session
 from datetime import datetime
+from flask.ext.bcrypt import Bcrypt
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)

@@ -11,7 +11,7 @@ db = SQLAlchemy()
 class User(db.Model):
     """Users of connect++"""
 
-    __tabelname__ = "users"
+    __tablename__ = "users"
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     first_name = db.Column(db.String(150), nullable=False)
@@ -27,7 +27,7 @@ class User(db.Model):
 class Connection(db.Model):
     """Connections of each User"""
 
-    __tabelname__ = "connections"
+    __tablename__ = "connections"
 
     connection_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     first_name = db.Column(db.String(150), nullable=False)
@@ -61,6 +61,6 @@ if __name__ == "__main__":
     # running when file gets called directly
 
     from server import app
-    connect_to_db(app, "postgresql:///connect++")
-    db.create_all()
+    connect_to_db(app, "postgresql:///connect")
     print "Connected to DB."
+    db.create_all()

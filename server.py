@@ -5,11 +5,9 @@ from jinja2 import StrictUndefined
 from flask import Flask, jsonify, render_template, redirect, request, flash, session, g
 
 from flask_debugtoolbar import DebugToolbarExtension
-
-from model import connect_to_db, db, Connection
-
+from sqlalchemy.orm.exc import NoResultFound
+from model import connect_to_db, db
 from datetime import datetime
-
 import helper
 
 
@@ -50,7 +48,11 @@ def add_connections():
 def add_single_connection():
     """adds a new connection to the database"""
 
+    print "********* start added route"
+
     info = request.form
+
+    print "!!info from server", info
 
     helper.add_connection(info)
 
@@ -83,6 +85,7 @@ def verify_login():
     except NoResultFound:
         flash("email and password didn't match any of our records")
         return redirect("/login")
+
 
 
 if __name__ == "__main__":

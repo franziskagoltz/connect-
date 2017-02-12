@@ -6,7 +6,7 @@ from flask import Flask, jsonify, render_template, redirect, request, flash, ses
 
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.orm.exc import NoResultFound
-from model import connect_to_db, db
+from model import connect_to_db, db, Connection
 from datetime import datetime
 import helper
 
@@ -50,13 +50,46 @@ def add_single_connection():
 
     print "********* start added route"
 
-    info = request.form
+    # info = request.form
 
-    print "!!info from server", info
+    # print "!!info from server", info
 
-    helper.add_connection(info)
+    # helper.add_connection(info)
 
-    flash("You added {} {} as a connection".format(info.get("first_name"), info.get("last_name")))
+    # for data in info:
+    first_name = request.form.get("first_name")
+
+    print first_name
+
+    last_name = request.form.get("last_name")
+    email = request.form.get("email")
+    met_where = request.form.get("met_where")
+    introduced_by = request.form.get("introduced_by")
+    city = request.form.get("city")
+    state = request.form.get("state")
+    notes = request.form.get("notes")
+    interests = request.form.get("interests")
+    connection_added_at = datetime.now()
+
+    print "datetime item",  connection_added_at
+
+    print "--------"
+    print "hello stop"
+
+    connection = Connection(first_name=first_name, last_name=last_name, email=email,)
+                            # met_where=met_where, introduced_by=introduced_by,
+                            # city=city, state=state, notes=notes, interests=interests,
+                            # connection_added_at=connection_added_at)
+
+    print "connection instance", connection
+
+    db.session.add(connection)
+
+    db.session.commit()
+
+    # flash("You added {} {} as a connection".format(info.get("first_name"), info.get("last_name")))
+    flash("You added {} {} as a connection".format(first_name, last_name))
+
     return redirect("/")
 
 
@@ -93,7 +126,7 @@ if __name__ == "__main__":
     # point that we invoke the DebugToolbarExtension
     app.debug = False
 
-    connect_to_db(app, "postgresql:///connect++")
+    connect_to_db(app, "postgresql:///connect")
 
     # Use the DebugToolbar
     DebugToolbarExtension(app)

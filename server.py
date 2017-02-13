@@ -48,47 +48,11 @@ def add_connections():
 def add_single_connection():
     """adds a new connection to the database"""
 
-    print "********* start added route"
+    info = request.form
 
-    # info = request.form
+    helper.add_connection(info)
 
-    # print "!!info from server", info
-
-    # helper.add_connection(info)
-
-    # for data in info:
-    first_name = request.form.get("first_name")
-
-    print first_name
-
-    last_name = request.form.get("last_name")
-    email = request.form.get("email")
-    met_where = request.form.get("met_where")
-    introduced_by = request.form.get("introduced_by")
-    city = request.form.get("city")
-    state = request.form.get("state")
-    notes = request.form.get("notes")
-    interests = request.form.get("interests")
-    connection_added_at = datetime.now()
-
-    print "datetime item",  connection_added_at
-
-    print "--------"
-    print "hello stop"
-
-    connection = Connection(first_name=first_name, last_name=last_name, email=email,)
-                            # met_where=met_where, introduced_by=introduced_by,
-                            # city=city, state=state, notes=notes, interests=interests,
-                            # connection_added_at=connection_added_at)
-
-    print "connection instance", connection
-
-    db.session.add(connection)
-
-    db.session.commit()
-
-    # flash("You added {} {} as a connection".format(info.get("first_name"), info.get("last_name")))
-    flash("You added {} {} as a connection".format(first_name, last_name))
+    flash("You added {} {} as a connection".format(info.get("first_name"), info.get("last_name")))
 
     return redirect("/")
 

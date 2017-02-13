@@ -84,6 +84,16 @@ def verify_login():
         return redirect("/login")
 
 
+@app.route("/logout")
+def handle_logout():
+    """handles user logout"""
+
+    del session["user_id"]
+    del session["user_name"]
+
+    return redirect("/")
+
+
 @app.route("/sign-up")
 def sign_up():
     """renders signup form"""

@@ -36,6 +36,23 @@ def add_connection(info):
     db.session.commit()
 
 
+def add_user(info):
+    """adds a new user to the database"""
+
+    for data in info:
+        first_name = info.get("first_name")
+        last_name = info.get("last_name")
+        email = info.get("email")
+        password = info.get("password")
+
+    user = User(first_name=first_name, last_name=last_name, email=email,
+                password=password)
+
+    db.session.add(user)
+
+    db.session.commit()
+
+
 def get_current_user(email, password):
     """getting the current user from the database"""
 

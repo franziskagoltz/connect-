@@ -36,6 +36,14 @@ def add_connection(info):
     db.session.commit()
 
 
+def get_connections():
+    """gets all of a users connections from the db"""
+
+    connections = Connection.query.all()
+
+    return connections
+
+
 def add_user(info):
     """adds a new user to the database"""
 

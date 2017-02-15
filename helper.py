@@ -11,7 +11,7 @@ bcrypt = Bcrypt(app)
 # db.create_all()
 
 
-def add_connection(info):
+def add_connection(info, user_id):
     """adds a new connection to the database"""
 
     for data in info:
@@ -26,8 +26,8 @@ def add_connection(info):
         interests = info.get("interests")
     connection_added_at = datetime.now()
 
-    connection = Connection(first_name=first_name, last_name=last_name, email=email,
-                            met_where=met_where, introduced_by=introduced_by,
+    connection = Connection(user_id=user_id, first_name=first_name, last_name=last_name,
+                            email=email, met_where=met_where, introduced_by=introduced_by,
                             city=city, state=state, notes=notes, interests=interests,
                             connection_added_at=connection_added_at)
 
@@ -69,4 +69,3 @@ def get_current_user(email, password):
     if bcrypt.check_password_hash(stored_pwhash, password):
 
         return User.query.filter(User.email == email).one()
-

@@ -54,7 +54,7 @@ def add_user(info):
         password = info.get("password")
 
     user = User(first_name=first_name, last_name=last_name, email=email,
-                password=password)
+                password=bcrypt.generate_password_hash(password))
 
     db.session.add(user)
 

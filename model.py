@@ -19,6 +19,8 @@ class User(db.Model):
     email = db.Column(db.String(100), nullable=False, unique=True)
     password = db.Column(db.String(100), nullable=False)
 
+    connections = db.relationship("Connection", backref="users")
+
     def __repr__(self):
         return "User id={} first_name={} last_name={}".format(
             self.user_id, self.first_name, self.last_name)

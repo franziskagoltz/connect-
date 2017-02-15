@@ -30,6 +30,7 @@ class Connection(db.Model):
     __tablename__ = "connections"
 
     connection_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
     first_name = db.Column(db.String(150), nullable=False)
     last_name = db.Column(db.String(150), nullable=False)
     email = email = db.Column(db.String(100))

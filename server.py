@@ -34,7 +34,9 @@ def index():
 def view_connections():
     """displays the user's connections"""
 
-    connections = helper.get_connections()
+    user_id = session["user_id"]
+
+    connections = helper.get_connections(user_id)
 
     return render_template("view_connections.html", connections=connections)
 

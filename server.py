@@ -76,7 +76,7 @@ def verify_login():
         current_user = helper.get_current_user(email, password)
         flash("You are now logged in!")
         session["user_id"] = current_user.user_id
-        session["user_name"] = current_user.name
+        session["user_name"] = current_user.first_name
 
         return redirect("/")
 

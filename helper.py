@@ -36,10 +36,10 @@ def add_connection(info, user_id):
     db.session.commit()
 
 
-def get_connections():
+def get_connections(user_id):
     """gets all of a users connections from the db"""
 
-    connections = Connection.query.all()
+    connections = Connection.query.filter_by(user_id=user_id).all()
 
     return connections
 

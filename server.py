@@ -37,6 +37,9 @@ def view_connections():
     return render_template("view_connections.html")
 
 
+# --------------- ADDING NEW CONNECTIONS --------------- #
+
+
 @app.route("/add-connection")
 def add_connections():
     """lets user fill out form to add a connection"""
@@ -56,6 +59,9 @@ def add_single_connection():
     flash("You added {} {} as a connection".format(info.get("first_name"), info.get("last_name")))
 
     return redirect("/")
+
+
+# --------------- LOGIN / LOGOUT --------------- #
 
 
 @app.route("/login")
@@ -93,6 +99,9 @@ def handle_logout():
     del session["user_name"]
 
     return redirect("/")
+
+
+# --------------- PROFILE REGISTRATION --------------- #
 
 
 @app.route("/sign-up")

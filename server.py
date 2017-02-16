@@ -49,8 +49,9 @@ def add_single_connection():
     """adds a new connection to the database"""
 
     info = request.form
+    user_id = session["user_id"]
 
-    helper.add_connection(info)
+    helper.add_connection(info, user_id)
 
     flash("You added {} {} as a connection".format(info.get("first_name"), info.get("last_name")))
 

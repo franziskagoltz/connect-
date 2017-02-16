@@ -102,6 +102,17 @@ def sign_up():
     return render_template("sign_up.html")
 
 
+@app.route("/signed-up", methods=["POST"])
+def processed_sign_up():
+    """processes signup form, adds user to db"""
+
+    info = request.form
+
+    helper.add_user(info)
+
+    return redirect("/")
+
+
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the
     # point that we invoke the DebugToolbarExtension

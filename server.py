@@ -34,7 +34,9 @@ def index():
 def view_connections():
     """displays the user's connections"""
 
-    return render_template("view_connections.html")
+    connections = helper.get_connections()
+
+    return render_template("view_connections.html", connections=connections)
 
 
 # --------------- ADDING NEW CONNECTIONS --------------- #

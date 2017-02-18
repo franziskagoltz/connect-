@@ -54,8 +54,13 @@ def view_connections():
 def add_connections():
     """lets user fill out form to add a connection"""
 
-    return render_template("add_connection.html")
+    if "user_id" in session:
 
+        return render_template("add_connection.html")
+
+    else:
+        flash("Please log in to add a new connection")
+        return redirect("/")
 
 @app.route("/added", methods=["POST"])
 def add_single_connection():

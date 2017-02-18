@@ -34,11 +34,17 @@ def index():
 def view_connections():
     """displays the user's connections"""
 
-    user_id = session["user_id"]
+    if "user_id" in session:
 
-    connections = helper.get_connections(user_id)
+        user_id = session["user_id"]
 
-    return render_template("view_connections.html", connections=connections)
+        connections = helper.get_connections(user_id)
+
+        return render_template("view_connections.html", connections=connections)
+
+    else:
+        flash("Please log in to view connections")
+        return redirect("/login")
 
 
 # --------------- ADDING NEW CONNECTIONS --------------- #

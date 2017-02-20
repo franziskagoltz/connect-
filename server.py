@@ -9,7 +9,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from model import connect_to_db, db, Connection
 from datetime import datetime
 import helper
-
+import os
 
 app = Flask(__name__)
 
@@ -22,12 +22,16 @@ app.secret_key = "ABCDE"
 app.jinja_env.undefined = StrictUndefined
 app.jinja_env.auto_reload = True
 
+fb_key = os.environ["FB_KEY"]
+
 
 @app.route("/")
 def index():
     """landing page of connect ++"""
 
-    return render_template("index.html")
+    print fb_key
+
+    return render_template("index.html", fb_key=fb_key)
 
 
 @app.route("/view-connections")

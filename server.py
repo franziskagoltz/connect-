@@ -114,8 +114,7 @@ def verify_login():
 def handle_logout():
     """handles user logout"""
 
-    del session["user_id"]
-    del session["user_name"]
+    session.clear()
 
     return redirect("/")
 

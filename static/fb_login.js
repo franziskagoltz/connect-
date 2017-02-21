@@ -1,4 +1,8 @@
 // This is called with the results from from FB.getLoginStatus().
+ 
+  // object to store user data we get back from fb oauth
+  var user_data = {};
+
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
@@ -8,6 +12,9 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
+      console.log(response.authResponse.accessToken);
+      user_data["token"] = response.authResponse.accessToken;
+
       testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
@@ -66,13 +73,31 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
+
+
+
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
+    FB.api('/me', {fields:['email', 'first_name', 'last_name', 'id', 'locale', 'picture']}, function(response) {
+
+      user_data["email"] = response.email;
+      user_data["first_name"] = response.first_name;
+      user_data["last_name"] = response.last_name;
+      user_data["fb_id"] = response.id;
+      user_data["locale"] = response.locale;
+      user_data["picture"] = response.picture;
+      // user_data["user_friends"] = response.user_friends;
+
+      console.log(user_data);
+
+      $.post("/fb-oauth", user_data, function() {
+        console.log("user data sent successfully");
+      });
+
+      console.log('Successful login for: ' + response.first_name);
       document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+        'Thanks for logging in, ' + response.first_name + '!';
     });
   }

@@ -140,6 +140,22 @@ def processed_sign_up():
     return redirect("/")
 
 
+# --------------- FACEBOOK OAUTH --------------- #
+
+
+@app.route("/fb-oauth", methods=["POST"])
+def facebook_login():
+    """handles facebook oauth"""
+
+    info = request.form
+
+    print info
+    print "test"
+
+    return redirect("/")
+
+
+
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the
     # point that we invoke the DebugToolbarExtension

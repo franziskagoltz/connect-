@@ -14,7 +14,7 @@ class User(db.Model):
     __tablename__ = "users"
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    fb_id = db.Column(db.Integer)
+    fb_id = db.Column(db.String(100))
     fb_token = db.Column(db.String(200))
     first_name = db.Column(db.String(150), nullable=False)
     last_name = db.Column(db.String(150), nullable=False)

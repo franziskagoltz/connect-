@@ -149,8 +149,7 @@ def facebook_login():
 
     info = request.form
 
-    print info
-    print "test"
+    helper.add_user(info)
 
     return redirect("/")
 

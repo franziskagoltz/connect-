@@ -51,10 +51,14 @@ def add_user(info):
         first_name = info.get("first_name")
         last_name = info.get("last_name")
         email = info.get("email")
-        password = info.get("password")
+        password = info.get("password", "passwordfromfb")
+        fb_id = info.get("fb_id")
+        picture_url = info.get("picture_url")
+        fb_token = info.get("fb_token")
 
     user = User(first_name=first_name, last_name=last_name, email=email,
-                password=bcrypt.generate_password_hash(password))
+                password=bcrypt.generate_password_hash(password), fb_token=fb_token,
+                fb_id=fb_id, picture_url=picture_url)
 
     db.session.add(user)
 

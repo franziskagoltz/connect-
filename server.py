@@ -66,6 +66,7 @@ def add_connections():
         flash("Please log in to add a new connection")
         return redirect("/")
 
+
 @app.route("/added", methods=["POST"])
 def add_single_connection():
     """adds a new connection to the database"""
@@ -149,9 +150,20 @@ def facebook_login():
 
     info = request.form
 
-    helper.add_user(info)
+    try:
+        current_user = helper.get_current_user(info["email"], "passwordfromfb")
+        session["user_id"] = current_user.user_id
+        session["user_name"] = current_user.first_name
+        flash("Welcome back! - You are now logged in!")
 
-    return redirect("/")
+        return "success login"
+
+    except NoResultFound:
+
+        helper.add_user(info)
+        flash("Thanks for signing up")
+
+        return "success sign up"
 
 
 

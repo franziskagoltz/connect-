@@ -57,12 +57,17 @@
   //    your app or not.
   //
   // These three cases are handled in the callback function.
-
+$("#fb_button").on("click", function() {
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
-  });
+    });
+  }
+);
 
   };
+
+
+
 
   // Load the SDK asynchronously
   (function(d, s, id) {
@@ -80,7 +85,7 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', {fields:['email', 'first_name', 'last_name', 'id', 'locale', 'picture']}, function(response) {
+    FB.api('/me', {fields:['email', 'first_name', 'last_name', 'id', 'locale', 'picture',]}, function(response) {
 
       user_data["email"] = response.email;
       user_data["first_name"] = response.first_name;
@@ -100,4 +105,18 @@
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.first_name + '!';
     });
+  
+//     var user_id = user_data["fb_id"];
+
+//     console.log(user_data.fb_id);
+
+//     FB.api(
+//     "/user_data['fb_id']/friends",
+//     function (response) {
+//       if (response && !response.error) {
+//         console.log(response.data);
+//       }
+//     }
+// );
+
   }

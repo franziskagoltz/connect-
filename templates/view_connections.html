@@ -1,6 +1,15 @@
+{% extends "base.html" %}
+
 {% block content %}
 
 <h1>Your Connections</h1>
 
+<ul>
+    {% for connection in connections %}
+        <li>
+            {{ connection.first_name }}
+        </li>
+    {% endfor %}
+</ul>
 
 {% endblock %}

@@ -161,6 +161,9 @@ def facebook_login():
     except NoResultFound:
 
         helper.add_user(info)
+        current_user = helper.get_current_user(info["email"], "passwordfromfb")
+        session["user_id"] = current_user.user_id
+        session["user_name"] = current_user.first_name
         flash("Thanks for signing up")
 
         return "success sign up"

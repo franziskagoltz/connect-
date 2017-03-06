@@ -31,7 +31,7 @@ def index():
 
     print fb_key
 
-    return render_template("index.html", fb_key=fb_key)
+    return render_template("index.html")
 
 
 @app.route("/view-connections")
@@ -88,7 +88,7 @@ def add_single_connection():
 def user_login():
     """renders login form"""
 
-    return render_template("login_form.html")
+    return render_template("login_form.html", fb_key=fb_key)
 
 
 @app.route("/login", methods=["POST"])

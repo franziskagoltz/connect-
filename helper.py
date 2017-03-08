@@ -50,6 +50,12 @@ def get_cities_of_connections(connections):
     return {connection.city for connection in connections}
 
 
+def get_city_connection_pairs(cities, connections):
+    """maps together cities and connections: who do you know in each city?"""
+
+    pass
+
+
 def add_user(info):
     """adds a new user to the database"""
 

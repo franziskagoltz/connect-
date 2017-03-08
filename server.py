@@ -44,7 +44,9 @@ def view_connections():
 
         connections = helper.get_connections(user_id)
 
-        return render_template("view_connections.html", connections=connections)
+        cities = helper.get_cities_of_connections(connections)
+
+        return render_template("view_connections.html", connections=connections, cities=cities)
 
     else:
         flash("Please log in to view connections")

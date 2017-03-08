@@ -5,25 +5,6 @@
 <h1>Welcome to Connect++</h1>
 <h3>Your personalized relationship manager</h3>
 
-<script type="text/javascript"> 
-var fbAPI = "{{ fb_key }}"
-console.log(fbAPI)
-</script>
-<script src="/static/fb_login.js"></script>
-
-<!-- <fb:login-button scope="public_profile,email" onclick="checkLoginState();">
-</fb:login-button> -->
-
-<div class="social-buttons">
-
-<fb:login-button scope="public_profile,email,user_friends" size="large" show-faces="true" auto-logout-link="true" id="fb_button" onclick="checkLoginState();"></fb:login-button>
-
-<!-- 
-<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" id="fb_button" data-auto-logout-link="false" onclick="checkLoginState();"></div>
-</div> -->
-
-<div id="status">
-</div>
 
 <br>
 <a href="/view-connections">View your connections</a>

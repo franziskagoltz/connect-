@@ -44,6 +44,12 @@ def get_connections(user_id):
     return connections
 
 
+def get_cities_of_connections(connections):
+    """returns a set of all the cities a user has a connection in"""
+
+    return {connection.city for connection in connections}
+
+
 def add_user(info):
     """adds a new user to the database"""
 

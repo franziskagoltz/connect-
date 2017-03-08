@@ -50,10 +50,12 @@ def get_cities_of_connections(connections):
     return {connection.city for connection in connections}
 
 
-def get_city_connection_pairs(cities, connections):
+def get_city_connection_pairs(city, user_id):
     """maps together cities and connections: who do you know in each city?"""
 
-    pass
+    connections_by_city = Connection.query.filter_by(user_id=user_id, city=city).all()
+
+    return connections_by_city
 
 
 def add_user(info):

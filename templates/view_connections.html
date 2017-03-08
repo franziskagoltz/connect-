@@ -4,10 +4,14 @@
 
 <h1>Your Connections</h1>
 
+<p>You have {{ connections|length }} connections in {{ cities|length }} cities </p>
+
 <ul>
     {% for connection in connections %}
         <li>
-            {{ connection.first_name }}
+            Name: {{ connection.first_name }}, {{ connection.last_name }} 
+            <br>
+            City: {{ connection.city }}
         </li>
     {% endfor %}
 </ul>

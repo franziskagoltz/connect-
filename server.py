@@ -11,6 +11,7 @@ from datetime import datetime
 import helper
 import os
 
+
 app = Flask(__name__)
 
 # Required to use Flask sessions and the debug toolbar
@@ -170,6 +171,20 @@ def facebook_login():
 
         return "success sign up"
 
+
+# --------------- JSON ROUTES --------------- #
+
+
+@app.route("/cities.json", methods=["POST"])
+def filter_by_cities():
+    """received ajax call to get city for connections and return objects matching
+       the city selection"""
+
+    city = request.form.get("city")
+
+    city_connection_pairs = helper.get_city_connection_pairs(city, session["user_id"])
+
+    return jsonify(Connection.serialize_connections_object(city_connection_pairs))
 
 
 if __name__ == "__main__":

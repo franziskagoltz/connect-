@@ -1,6 +1,7 @@
 """ datamodel for conntect++ """
 
 from flask_sqlalchemy import SQLAlchemy
+from marshmallow import Schema, fields, pprint
 
 
 # connection to the PostgreSQL database
@@ -38,7 +39,7 @@ class Connection(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
     first_name = db.Column(db.String(150), nullable=False)
     last_name = db.Column(db.String(150), nullable=False)
-    email = email = db.Column(db.String(100))
+    email = db.Column(db.String(100))
     met_where = db.Column(db.String(100))
     introduced_by = db.Column(db.String(100))
     connection_added_at = db.Column(db.DateTime)
@@ -51,7 +52,31 @@ class Connection(db.Model):
         return "Connection id={} first_name={} last_name={}".format(
             self.connection_id, self.first_name, self.last_name)
 
+    @classmethod
+    def serialize_connections_object(cls, connections):
 
+        schema = ConnectionSchema()
+        result = []
+        for connection in connections:
+            result.append(schema.dump(connection))
+
+        return result
+
+
+class ConnectionSchema(Schema):
+    first_name = fields.Str()
+    last_name = fields.Str()
+    email = fields.Str()
+    met_where = fields.Str()
+    introduced_by = fields.Str()
+    connection_added_at = fields.DateTime()
+    city = fields.Str()
+    state = fields.Str()
+    notes = fields.Str()
+    interests = fields.Str()
+
+    def __repr__(self):
+        return "ConnectionSchema instantiated"
 # Helper functions to connect to database
 
 def connect_to_db(app, database_uri):

@@ -55,10 +55,12 @@ class Connection(db.Model):
     @classmethod
     def serialize_connections_object(cls, connections):
 
-        schema = ConnectionSchema()
-        result = []
-        for connection in connections:
-            result.append(schema.dump(connection))
+        schema = ConnectionSchema(many=True)
+        # result = []
+        # for connection in connections:
+        result = schema.dump(connections)
+
+        print "result", result
 
         return result
 

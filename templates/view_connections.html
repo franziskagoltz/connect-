@@ -4,16 +4,31 @@
 
 <h1>Your Connections</h1>
 
-<p>You have {{ connections|length }} connections in {{ cities|length }} cities </p>
+<h5>Overview: You have {{ connections|length }} connections in {{ cities|length }} cities </h5>
 
-<ul>
-    {% for connection in connections %}
-        <li>
-            Name: {{ connection.first_name }}, {{ connection.last_name }} 
-            <br>
-            City: {{ connection.city }}
-        </li>
+<h6>Filter Connections by City</h6>
+    {% for city in cities %}
+        <button class="city" value="{{city}}">{{ city }}</button>
     {% endfor %}
-</ul>
+<br><br>
+
+<div>
+    <ul id="filterd">
+    </ul>
+</div>
+
+<div id="connections">
+    <ul>
+        {% for connection in connections %}
+            <li>
+                Name: {{ connection.first_name }} {{ connection.last_name }} 
+                <br>
+                City: {{ connection.city }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script src="/static/cities.js"></script>
 
 {% endblock %}

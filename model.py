@@ -64,6 +64,14 @@ class Connection(db.Model):
 
         return result
 
+    @classmethod
+    def get_connection(cls, connection_id):
+        """returns a connection instance from db"""
+
+        return Connection.query.filter_by(connection_id=connection_id).one()
+
+        # return connection
+
 
 class ConnectionSchema(Schema):
     first_name = fields.Str()

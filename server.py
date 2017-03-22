@@ -35,6 +35,9 @@ def index():
     return render_template("index.html")
 
 
+# --------------- VIEW CONNECTIONS --------------- #
+
+
 @app.route("/view-connections")
 def view_connections():
     """displays the user's connections"""
@@ -52,6 +55,15 @@ def view_connections():
     else:
         flash("Please log in to view connections")
         return redirect("/login")
+
+
+@app.route("/connection/<connection_id>")
+def get_userinfo(connection_id):
+    """shows all information about a connection"""
+
+    connection = Connection.get_connection(connection_id)
+
+    return render_template("connection_details.html", connection=connection)
 
 
 # --------------- ADDING NEW CONNECTIONS --------------- #

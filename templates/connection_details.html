@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>{{connection.first_name}} {{connection.last_name}}</h2>
+<p>Location: <span>{{connection.city}}, {{connection.state}}</span></p><br>
+
+<h4>Details</h4>
+<p>Email: <span>{{connection.email}}</span></p>
+
+<p>Connected Since: <span>{{connection.connection_added_at.strftime('%b %d, %Y')}}</span></p>
+
+<p>Met Where: <span>{{connection.met_where}}</span></p>
+
+<p>Introduced By: {% if connection.introduced_by %}
+                    <span>{{connection.introduced_by}}</span>
+                  {% endif %}</p>
+
+<p>Notes: <span>{{connection.notes}}</span></p>
+
+<p>Interests: <span>{{connection.interests}}</span></p>
+
+{% endblock %}

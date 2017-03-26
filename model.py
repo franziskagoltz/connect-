@@ -70,7 +70,13 @@ class Connection(db.Model):
 
         return Connection.query.filter_by(connection_id=connection_id).one()
 
-        # return connection
+    @classmethod
+    def search_connections(cls, search_term):
+        """queries the db to return a list of connections that match a search term"""
+
+        return Connection.query.filter((Connection.first_name.ilike(
+            "%"+search_term+"%")) | (Connection.last_name.ilike(
+            "%"+search_term+"%"))).all()
 
 
 class ConnectionSchema(Schema):

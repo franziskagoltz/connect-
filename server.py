@@ -61,9 +61,31 @@ def view_connections():
 def get_userinfo(connection_id):
     """shows all information about a connection"""
 
-    connection = Connection.get_connection(connection_id)
+    if "user_id" in session:
+        connection = Connection.get_connection(connection_id)
 
-    return render_template("connection_details.html", connection=connection)
+        return render_template("connection_details.html", connection=connection)
+
+    else:
+        flash("Please log in to view connection details")
+        return redirect("/login")
+
+
+@app.route("/search")
+def search_for_connection():
+    """searches for a connection based on search term"""
+
+    search_term = request.args.get("search")
+
+    if "user_id" in session:
+        matches = Connection.search_connections(search_term)
+
+        return render_template("searched.html", search_term=search_term,
+                matches=matches)
+
+    else:
+        flash("Please log in to search for connections")
+        return redirect("/login")
 
 
 # --------------- ADDING NEW CONNECTIONS --------------- #

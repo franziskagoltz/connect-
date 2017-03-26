@@ -37,11 +37,13 @@
 
           $.post("/fb-oauth", user_data, function() {
             console.log("user data sent successfully from fblogin()");
+            window.location.href = "http://localhost:5000/view-connections";
           });
 
 
            console.log('Good to see you, ' + response.first_name + '.');
          });
+          
         } else {
          console.log('User cancelled login or did not fully authorize.');
         }

@@ -60,8 +60,6 @@ class Connection(db.Model):
         # for connection in connections:
         result = schema.dump(connections)
 
-        print "result", result
-
         return result
 
     @classmethod
@@ -71,12 +69,12 @@ class Connection(db.Model):
         return Connection.query.filter_by(connection_id=connection_id).one()
 
     @classmethod
-    def search_connections(cls, search_term):
+    def search_connections(cls, search_term, user_id):
         """queries the db to return a list of connections that match a search term"""
 
-        return Connection.query.filter((Connection.first_name.ilike(
-            "%"+search_term+"%")) | (Connection.last_name.ilike(
-            "%"+search_term+"%"))).all()
+        return Connection.query.filter(Connection.user_id == user_id, (
+            Connection.first_name.ilike("%"+search_term+"%")) |
+            (Connection.last_name.ilike("%"+search_term+"%"))).all()
 
 
 class ConnectionSchema(Schema):
@@ -93,6 +91,8 @@ class ConnectionSchema(Schema):
 
     def __repr__(self):
         return "ConnectionSchema instantiated"
+
+
 # Helper functions to connect to database
 
 def connect_to_db(app, database_uri):

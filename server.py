@@ -176,6 +176,8 @@ def processed_sign_up():
 
     helper.add_user(info)
 
+    flash("You are now signed up")
+
     return redirect("/")
 
 

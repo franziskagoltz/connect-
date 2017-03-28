@@ -78,6 +78,10 @@ def add_user(info):
 
     db.session.commit()
 
+    # log user in upon signup
+    session["user_id"] = user.user_id
+    session["user_name"] = user.first_name
+
 
 def get_current_user(email, password):
     """getting the current user from the database"""

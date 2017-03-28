@@ -62,7 +62,8 @@ def get_userinfo(connection_id):
     """shows all information about a connection"""
 
     if "user_id" in session:
-        connection = Connection.get_connection(connection_id)
+        user_id = session["user_id"]
+        connection = Connection.get_connection(connection_id, user_id)
 
         return render_template("connection_details.html", connection=connection)
 

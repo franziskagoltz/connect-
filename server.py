@@ -78,7 +78,8 @@ def search_for_connection():
     search_term = request.args.get("search")
 
     if "user_id" in session:
-        matches = Connection.search_connections(search_term)
+        user_id = session["user_id"]
+        matches = Connection.search_connections(search_term, user_id)
 
         return render_template("searched.html", search_term=search_term,
                 matches=matches)
@@ -96,7 +97,6 @@ def add_connections():
     """lets user fill out form to add a connection"""
 
     if "user_id" in session:
-
         return render_template("add_connection.html")
 
     else:

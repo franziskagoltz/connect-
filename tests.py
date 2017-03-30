@@ -58,6 +58,34 @@ class FlaskTestLoggedOut(unittest.TestCase):
         self.assertIn("Login", result.data)
 
 
+class FlaskTestLoggedIn(unittest.TestCase):
+    """Testing Flask Routes when user is logged in"""
+
+    def setUp(self):
+        """Happens before every test."""
+
+        app.config["TESTING"] = True
+        app.config["SECRET_KEY"] = "key"
+        self.client = app.test_client()
+
+        with self.client as c:
+            with c.session_transaction() as sess:
+                sess["user_id"] = 1
+                sess["user_name"] = "UserName"
+
+    def test_landing(self):
+        """Test landing page of connect++ when logged in"""
+
+        result = self.client.get("/")
+        self.assertIn("You're signed in as", result.data)
+
+    def test_add_connection(self):
+        """Test add connection page of connect++ when logged in"""
+
+        result = self.client.get("/add-connection")
+        self.assertIn("Add a New Connection", result.data)
+
+
 if __name__ == "__main__":
 
     unittest.main()

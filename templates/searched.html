@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Your Connections</h1>
+
+<h5>Overview: You have {{ matches|length }} connections matching "{{ search_term }}" </h5>
+
+<div id="connections">
+    <ul>
+        {% for connection in matches %}
+            <li>
+                Name: <a href="/connection/{{connection.connection_id}}"> {{ connection.first_name }} {{ connection.last_name }} 
+                </a>
+                <br>
+                City: {{ connection.city }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+{% endblock %}

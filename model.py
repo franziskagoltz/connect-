@@ -63,10 +63,10 @@ class Connection(db.Model):
         return result
 
     @classmethod
-    def get_connection(cls, connection_id):
+    def get_connection(cls, connection_id, user_id):
         """returns a connection instance from db"""
 
-        return Connection.query.filter_by(connection_id=connection_id).one()
+        return Connection.query.filter_by(connection_id=connection_id, user_id=user_id).one()
 
     @classmethod
     def search_connections(cls, search_term, user_id):

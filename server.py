@@ -174,7 +174,11 @@ def processed_sign_up():
 
     info = request.form
 
-    helper.add_user(info)
+    user = helper.add_user(info)
+
+    # sign user in upon login
+    session["user_id"] = user.user_id
+    session["user_name"] = user.first_name
 
     flash("You are now signed up")
 

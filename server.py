@@ -116,7 +116,7 @@ def add_single_connection():
 
     flash("You added {} {} as a connection".format(info.get("first_name"), info.get("last_name")))
 
-    return redirect("/")
+    return redirect("/view-connections")
 
 
 # --------------- LOGIN / LOGOUT --------------- #

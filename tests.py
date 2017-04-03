@@ -95,6 +95,71 @@ class FlaskTestLoggedIn(unittest.TestCase):
         self.assertIn("Add a New Connection", result.data)
 
 
+class FlaskTestsDatabase(unittest.TestCase):
+    """Flask tests that use the database."""
+
+    def setUp(self):
+        """Stuff to do before every test."""
+
+        # Get the Flask test client
+        self.client = app.test_client()
+        app.config["TESTING"] = True
+
+        with self.client as c:
+            with c.session_transaction() as sess:
+                sess["user_id"] = 1
+                sess["user_name"] = "UserName"
+
+        # Connect to test database
+        connect_to_db(app, "postgresql:///testdb")
+
+        # Create tables and add sample data
+        db.create_all()
+        example_data()
+
+    def tearDown(self):
+        """Do at end of every test."""
+
+        db.session.close()
+        db.drop_all()
+
+    def test_view_connections(self):
+        """Test view connections feature of connect++ when logged in"""
+
+        result = self.client.get("/view-connections", follow_redirects=True)
+        self.assertIn("Your Connections", result.data)
+        # self.assertIn("Login", result.data)
+
+    def test_view_connection_details(self):
+        """Test view connections feature of connect++ when logged in"""
+
+        result = self.client.get("/connection/1")
+        self.assertIn("Details", result.data)
+        self.assertIn("Lotta", result.data)
+
+    def test_search_connections(self):
+        """Test search connection feature of connect++ when logged in"""
+
+        result = self.client.get("/search?search=lotta", follow_redirects=True)
+        self.assertIn("Your Connections", result.data)
+        self.assertIn("You have 1 connections matching", result.data)
+
+    def test_added_route(self):
+        """test flask route that adds connection"""
+
+        result = self.client.post("/added", data={"first_name": "Sammie",
+                                                  "last_name": "Salt",
+                                                  "email": "sammie@sammie.com",
+                                                  "met_where": "techcrunch",
+                                                  "introduced_by": "Liza",
+                                                  "city": "SF",
+                                                  "state": "CA",
+                                                  "notes": "",
+                                                  "interests": ""}, follow_redirects=True)
+        self.assertIn("You added", result.data)
+        self.assertIn("Your Connections", result.data)
+
+
 def example_data():
     """loads example data into the db"""
 

@@ -1,5 +1,14 @@
 import unittest
+from datetime import datetime
+from flask import Flask, jsonify, session
+from flask.ext.bcrypt import Bcrypt
+from model import connect_to_db, db, User, Connection
+import helper
 from server import app
+
+
+# app = Flask(__name__)
+bcrypt = Bcrypt(app)
 
 
 class FlaskTestLoggedOut(unittest.TestCase):
@@ -84,6 +93,25 @@ class FlaskTestLoggedIn(unittest.TestCase):
 
         result = self.client.get("/add-connection")
         self.assertIn("Add a New Connection", result.data)
+
+
+def example_data():
+    """loads example data into the db"""
+
+    # User Data
+    user = User(first_name="Jane", last_name="Hacks", email="jane@gmail.com",
+                password=bcrypt.generate_password_hash("jane"))
+    db.session.add(user)
+    db.session.commit()
+
+    # Connection Data
+    connection1 = Connection(user_id=1, first_name="Lotta", last_name="Lemon",
+                             email="lotta@lotta.com", met_where="techcrunch",
+                             introduced_by="Tom", city="SF", state="CA", notes="",
+                             interests="", connection_added_at=datetime.now())
+
+    db.session.add(connection1)
+    db.session.commit()
 
 
 if __name__ == "__main__":

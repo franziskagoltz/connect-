@@ -160,6 +160,66 @@ class FlaskTestsDatabase(unittest.TestCase):
         self.assertIn("Your Connections", result.data)
 
 
+
+    # ------------ UNIT TESTS FROM HELPER.PY ------------ #
+
+    def test_add_connection(self):
+        """tests helper function 'add connection' """
+
+        user_id = 1
+
+        info = {"first_name": "Sammie",
+                "last_name": "Salt",
+                "email": "sammie@sammie.com",
+                "met_where": "techcrunch",
+                "introduced_by": "Liza",
+                "city": "SF",
+                "state": "CA",
+                "notes": "",
+                "interests": "",
+                }
+
+        helper.add_connection(info, user_id)
+
+        check = Connection.query.filter(Connection.first_name == "Sammie").one()
+
+        self.assertEqual(check.first_name, "Sammie")
+
+    def test_get_city_connection_pairs(self):
+        """tests helper function to get city & connection pairs"""
+
+        user_id = 1
+
+        by_city = helper.get_city_connection_pairs("SF", user_id)
+
+        self.assertEqual(by_city[0].first_name, "Lotta")
+
+    def test_add_user(self):
+        """tests add user helper function"""
+
+        info = {"first_name": "Sammie",
+                "last_name": "Salt",
+                "email": "sammie@sammie.com",
+                "password": "sammie",
+                "fb_id": "",
+                "picture_url": "",
+                "fb_token": "",
+                }
+
+        helper.add_user(info)
+
+        check = User.query.filter(User.first_name == "Sammie").one()
+
+        self.assertEqual(check.first_name, "Sammie")
+
+    def test_get_current_user(self):
+        """tests helper func get_current_user to check passwords when logging in"""
+
+        check = helper.get_current_user("jane@gmail.com", "jane".encode("utf-8"))
+
+        self.assertEqual(check.first_name, "Jane")
+
+
 def example_data():
     """loads example data into the db"""
 

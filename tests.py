@@ -220,6 +220,67 @@ class FlaskTestsDatabase(unittest.TestCase):
         self.assertEqual(check.first_name, "Jane")
 
 
+class FlaskTestsDatabaseLoggedOut(unittest.TestCase):
+    """Flask tests that use the database."""
+
+    def setUp(self):
+        """Stuff to do before every test."""
+
+        # Get the Flask test client
+        self.client = app.test_client()
+        app.config["TESTING"] = True
+
+        # Connect to test database
+        connect_to_db(app, "postgresql:///testdb")
+
+        # Create tables and add sample data
+        db.create_all()
+        example_data()
+
+    def tearDown(self):
+        """Do at end of every test."""
+
+        db.session.close()
+        db.drop_all()
+
+    def test_login_route(self):
+        """test flask route that logs user in"""
+
+        result = self.client.post("/login", data={"username": "jane@gmail.com", "password": "jane"},
+                                  follow_redirects=True)
+
+        self.assertIn("You are now logged in!", result.data)
+
+    def test_login_route_no_match(self):
+        """test flask route that logs user in when the input data is not in db"""
+
+        result = self.client.post("/login", data={"username": "nomatch@gmail.com", "password": "nomatch"},
+                                  follow_redirects=True)
+
+        self.assertIn("email and password", result.data)
+        self.assertIn("Login", result.data)
+
+    def test_signup_route(self):
+        """tests flask route that signs user up"""
+
+        result = self.client.post("/signed-up", data={"first_name": "Sammie",
+                                                      "last_name": "Salt",
+                                                      "email": "sammie@sammie.com",
+                                                      "password": "sammie",
+                                                      "fb_id": "",
+                                                      "picture_url": "",
+                                                      "fb_token": "",
+                                                      }, follow_redirects=True)
+        self.assertIn("You are now signed up", result.data)
+
+    def test_logout_route(self):
+        """tests flask logout route"""
+
+        result = self.client.get("/logout", follow_redirects=True)
+
+        self.assertIn("Welcome to Connect++", result.data)
+
+
 def example_data():
     """loads example data into the db"""
 

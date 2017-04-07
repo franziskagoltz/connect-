@@ -8,3 +8,22 @@ body {
 h1 {
     font-family: "Quando", serif;
 }
+
+.navbar {
+    background-color: rgba(0,0,0, 0.4);
+    border: 0;
+    font-family: "Open Sans", sans-serif;
+}
+
+.navbar-text {
+    color: white !important;
+}
+
+.navbar a {
+    color: white !important;
+}
+
+.transparent-search {
+    background-color: rgba(0,0,0, 0.4);
+    color: white !important;
+}

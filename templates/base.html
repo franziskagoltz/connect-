@@ -44,9 +44,9 @@
       </ul>
       <form class="navbar-form navbar-left" action="/search">
         <div class="form-group">
-          <input name="search" type="text" class="form-control" placeholder="Search Connections">
+          <input name="search" type="text" class="form-control transparency" placeholder="Search Connections">
         </div>
-        <button type="submit" class="btn btn-default">Find</button>
+        <button type="submit" class="btn btn-default transparency">Find</button>
       </form>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
@@ -64,10 +64,11 @@
 </nav>
 
 <div class="container">
-  <div class="col-xs-12">
+  <div class="">
     {% for message in get_flashed_messages() %}
-      {{ message }}
+      <div class="col-xs-12 col-md-6 transparency">{{ message }}</div>
     {% endfor %}
+    <br><br>
   </div>
 
   {% block content %}

@@ -2,32 +2,36 @@
 
 {% block content %}
 
-<h1>Your Connections</h1>
+<div class="container col-xs-12 col-md-6 transparency">
 
-<h5>Overview: You have {{ connections|length }} connections in {{ cities|length }} cities </h5>
+    <h1>Your Connections</h1>
 
-<h6>Filter Connections by City</h6>
-    {% for city in cities %}
-        <button class="city" value="{{city}}">{{ city }}</button>
-    {% endfor %}
-<br><br>
+    <h5>Overview: You have {{ connections|length }} connections in {{ cities|length }} cities </h5>
 
-<div>
-    <ul id="filterd">
-    </ul>
-</div>
-
-<div id="connections">
-    <ul>
-        {% for connection in connections %}
-            <li>
-                Name: <a href="/connection/{{connection.connection_id}}"> {{ connection.first_name }} {{ connection.last_name }} 
-                </a>
-                <br>
-                City: {{ connection.city }}
-            </li>
+    <h6>Filter Connections by City</h6>
+        {% for city in cities %}
+            <button class="city transparency" value="{{city}}">{{ city }}</button>
         {% endfor %}
-    </ul>
+    <br><br>
+
+    <div>
+        <ul id="filterd">
+        </ul>
+    </div>
+
+    <div id="connections">
+        <ul>
+            {% for connection in connections %}
+                <li>
+                    Name: <a href="/connection/{{connection.connection_id}}"> {{ connection.first_name }} {{ connection.last_name }} 
+                    </a>
+                    <br>
+                    City: {{ connection.city }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
 </div>
 
 <script src="/static/cities.js"></script>

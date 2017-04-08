@@ -23,7 +23,11 @@ h1 {
     color: white !important;
 }
 
-.transparent-search {
+.transparency {
     background-color: rgba(0,0,0, 0.4);
     color: white !important;
+}
+
+#state {
+    color: black;
 }

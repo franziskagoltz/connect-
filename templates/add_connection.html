@@ -3,13 +3,13 @@
 {% block content %}
 
 
-<div class="container">
+<div class="container col-xs-12 col-md-6 transparency">
   <h1>Add a New Connection</h1>
   <br>
-  <form class="col-xs-12 col-md-6" action="/added" method="POST">
+  <form action="/added" method="POST">
     <div class="form-group">
       <label for="first_name">First Name</label>
-      <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name">
+      <input type="text" class="form-control transparent-search" id="first_name" name="first_name" placeholder="First Name">
     </div>
     <div class="form-group">
       <label for="last_name">Last Name</label>
@@ -25,7 +25,7 @@
     </div>
     <div class="form-group">
       <label for="introduced_by">Introduced by</label>
-      <input type="text" class="form-control" id="introduced_by" anme="introduced_by" placeholder="Introduced By">
+      <input type="text" class="form-control" id="introduced_by" name="introduced_by" placeholder="Introduced By">
     </div>
     <div class="form-group">
       <label for="city">City</label>
@@ -33,8 +33,7 @@
     </div>
     <div class="form-group">
       <label for="state">State</label>
-      <!-- <input type="text" class="form-control" id="state" placeholder="Password"> -->
-      <select id="state" name="state">
+      <select id="state" name="state" id="state">
         <option value="">--</option>
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>

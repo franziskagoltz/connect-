@@ -76,6 +76,21 @@ class Connection(db.Model):
             Connection.first_name.ilike("%"+search_term+"%")) |
             (Connection.last_name.ilike("%"+search_term+"%"))).all()
 
+    @classmethod
+    def update(cls, c_id, attribute, value):
+        """updates the attribute of a connection instance"""
+
+        # get connection instance
+        connection = Connection.query.get(c_id)
+
+        # updating the attribute passed of the connection
+        setattr(connection, attribute, value)
+
+        # print connection.attribute
+
+        db.session.add(connection)
+        db.session.commit()
+
 
 class ConnectionSchema(Schema):
     first_name = fields.Str()

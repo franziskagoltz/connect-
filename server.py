@@ -119,6 +119,22 @@ def add_single_connection():
     return redirect("/view-connections")
 
 
+# --------------- UPDATE CONNECTIONS --------------- #
+
+
+@app.route("/handle-update", methods=["POST"])
+def update_connection():
+    """handles updateing of a connection"""
+
+    attribute = request.form.get("category")
+    value = request.form.get("value")
+    c_id = request.form.get("id")
+
+    Connection.update(c_id, attribute, value)
+
+    return redirect("/connection/"+c_id)
+
+
 # --------------- LOGIN / LOGOUT --------------- #
 
 

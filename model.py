@@ -86,8 +86,6 @@ class Connection(db.Model):
         # updating the attribute passed of the connection
         setattr(connection, attribute, value)
 
-        # print connection.attribute
-
         db.session.add(connection)
         db.session.commit()
 

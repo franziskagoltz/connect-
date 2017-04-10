@@ -23,7 +23,7 @@ app.secret_key = "ABCDE"
 app.jinja_env.undefined = StrictUndefined
 app.jinja_env.auto_reload = True
 
-fb_key = os.environ["FB_KEY"]
+fb_key = os.environ.get("FB_KEY")
 
 
 @app.route("/")

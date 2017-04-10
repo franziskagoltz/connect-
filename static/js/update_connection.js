@@ -15,6 +15,16 @@ $(".edit").on("click", function() {
     // appending the form to the html div
     $("#input").html(htmlAdd);
 
+    // handling submit event of edit event: needs to be in callback, otherwise the 
+    // form with the add-id is not in the DOM -- submit event won't work 
+    $("#add").on("submit", function() {
+
+        var updatedVal = $("#update").val();
+
+        // sending post request to server to handle update & store it in db
+        $.post("/handle-update", {"category": category, "value": updatedVal});
+    });
+
 });
 
 

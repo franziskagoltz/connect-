@@ -8,7 +8,8 @@
   <p>Location: <span>{{connection.city}}, {{connection.state}}</span></p><br>
 
   <h4>Details</h4>
-  <p>Email: <span>{{connection.email}}</span></p>
+  <p>Email: <span>{{connection.email}}</span> &nbsp &nbsp <button class="edit transparency"
+            value="email"> <span class="glyphicon glyphicon-pencil"></span></button></p>
 
   <p>Connected Since: <span>{{connection.connection_added_at.strftime('%b %d, %Y')}}</span></p>
 
@@ -18,10 +19,15 @@
                       <span>{{connection.introduced_by}}</span>
                     {% endif %}</p>
 
-  <p>Notes: <span>{{connection.notes}}</span></p>
+  <p>Notes: <span>{{connection.notes}}</span> &nbsp &nbsp <button class="edit transparency"
+            value="notes"> <span class="glyphicon glyphicon-pencil"></span></button></p>
 
-  <p>Interests: <span>{{connection.interests}}</span></p>
+  <p>Interests: <span id="test">{{connection.interests}}</span> &nbsp &nbsp <button 
+                class="edit transparency" value="interests"> <span class="glyphicon glyphicon-pencil"></span></button></p>
+  <div id="input"></div>
 
 </div>
+
+<script src="/static/js/update_connection.js"></script>
 
 {% endblock %}

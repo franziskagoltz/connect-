@@ -22,7 +22,7 @@ $(".edit").on("click", function() {
         var updatedVal = $("#update").val();
 
         // sending post request to server to handle update & store it in db
-        $.post("/handle-update", {"category": category, "value": updatedVal});
+        $.post("/handle-update", {"category": category, "value": updatedVal, "id": c_id});
     });
 
 });

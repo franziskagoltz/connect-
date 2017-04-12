@@ -1,6 +1,7 @@
 body {
     background-size: cover;
-    background-image: url(imgs/background2-addedopacity.png);
+    background-image: url(imgs/background1.jpg);
+    /*background-image: url(imgs/background2-addedopacity.png);*/
     font-family: "Open Sans", sans-serif;
     color: white; 
 }

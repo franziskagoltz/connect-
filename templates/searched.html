@@ -2,22 +2,23 @@
 
 {% block content %}
 
-<h1>Your Connections</h1>
+<div  class="container col-xs-12 col-md-6 transparency">
+  <h1>Your Connections</h1>
 
-<h5>Overview: You have {{ matches|length }} connections matching "{{ search_term }}" </h5>
+  <h5>Overview: You have {{ matches|length }} connections matching "{{ search_term }}" </h5>
 
-<div id="connections">
-    <ul>
-        {% for connection in matches %}
-            <li>
-                Name: <a href="/connection/{{connection.connection_id}}"> {{ connection.first_name }} {{ connection.last_name }} 
-                </a>
-                <br>
-                City: {{ connection.city }}
-            </li>
-        {% endfor %}
-    </ul>
+  <div id="connections">
+      <ul>
+          {% for connection in matches %}
+              <li>
+                  Name: <a style="color:white" href="/connection/{{connection.connection_id}}"> {{ connection.first_name }} {{ connection.last_name }} 
+                  </a>
+                  <br>
+                  City: {{ connection.city }}
+              </li>
+          {% endfor %}
+      </ul>
+  </div>
 </div>
 
-
-{% endblock %}
+{% endblock %}  

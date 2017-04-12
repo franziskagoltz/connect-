@@ -144,6 +144,16 @@ class FlaskTestsDatabase(unittest.TestCase):
         self.assertIn("Your Connections", result.data)
         self.assertIn("You have 1 connections matching", result.data)
 
+    def test_update_connection(self):
+        """test the update connection feature"""
+
+        result = self.client.post("/handle-update", data={"id": "1",
+                                                   "value": "loves animals",
+                                                   "category": "interests"}, 
+                                                   follow_redirects=True)
+        self.assertIn("Details", result.data)
+        self.assertIn("loves animals", result.data)
+
     def test_added_route(self):
         """test flask route that adds connection"""
 

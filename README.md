@@ -48,3 +48,8 @@ A user can edit information about their connections
 A user can also search for connections matching any part of their name
 
 ![Connect++](/static/imgs/readme-imgs/search.gif)
+
+<h4>Tests:</h4>
+
+Connect++ has 91% test coverage in Python
+![Tests++](/static/imgs/readme-imgs/coverage)

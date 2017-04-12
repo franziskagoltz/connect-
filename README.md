@@ -51,5 +51,7 @@ A user can also search for connections matching any part of their name
 
 <h4>Tests:</h4>
 
-Connect++ has 91% test coverage in Python
-![Tests++](/static/imgs/readme-imgs/coverage)
+Connect++ has 91% test coverage in Python, as shown in the report:
+
+![Tests++](/static/imgs/readme-imgs/coverage.png)
+

@@ -1,6 +1,5 @@
 "use strict";
 
-
 function filter_cities(data) {
 
     // instantiating an array of contacts living in the selected city
@@ -25,6 +24,6 @@ $('.city').on('click', function() {
 
     console.log(city);
 
-    $.post("/cities.json", {"city": city}, filter_cities)
+    $.post("/cities.json", {"city": city}, filter_cities);
 
 });
